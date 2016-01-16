@@ -1,1 +1,22 @@
-angular.module('blocJams', []);
+(function() {
+	function config($stateProvider, $locationProvider) {
+		$locationProvider
+			.html5Mode({
+			enabled: true, //hashbang, Angular prefix to routes, disabled.
+			requireBase: false //so a base tag not required 
+		});
+		
+		$stateProvider
+			.state('landing', {
+				url: '/',
+				templateUrl: '/templates/landing.html' //the ui-view directive in index.html loads the landing state
+		})
+			.state('album', {
+			url: '/album',
+			templateUrl: '/templates/album.html' // when localhost:3000/album ui-view loads the album template
+		});
+	}
+		angular
+			module('blocJams', ['ui.router'])
+			.config(config);
+})();
