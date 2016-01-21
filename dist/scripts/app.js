@@ -14,6 +14,7 @@
 		})
 			.state('album', {
 				url: '/album',
+				controller: 'AlbumCtrl as album',
 				templateUrl: '/templates/album.html' // when localhost:3000/album ui-view loads the album template
 		})
 			.state('collection', {
@@ -23,6 +24,7 @@
 		});
 		
 		angular
-			module('blocJams', ['ui.router'])
+			.module('blocJams', ['ui.router'])
 			.config(config);
+	}
 })();
