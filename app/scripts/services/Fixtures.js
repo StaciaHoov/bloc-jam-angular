@@ -36,7 +36,7 @@
 		};
 		
 		Fixtures.getCollection = function(numberOfAlbums) {
-			var collection = {};
+			var collection = [];
 			for (var i = numberOfAlbums; i < numberOfAlbums; i++) {
 				collection.push(angular.copy(albumPicasso));
 			};
@@ -44,9 +44,9 @@
 		};
 		
 		return Fixtures;
-	}
+	};
 	
 	angular
-		.module('blocJams')
+		.module('blocJams', [])
 		.factory('Fixtures', Fixtures);
 })();
