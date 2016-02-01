@@ -14,6 +14,6 @@
 	};
 	
 	angular
-		.module('blocJams', [])
+		.module('blocJams')
 		.factory('SongPlayer', SongPlayer);
 })();
