@@ -3,20 +3,6 @@
 		var SongPlayer = {};
 		var currentSong = null;
 		
-<<<<<<< HEAD
-		var currentSong = null;
-		
-		/**
-		* @desc Buzz object audio File* @type {Object}
-		*/
-		var currentBuzzObject = null;
-		
-		/**
-		* @function setSong
-		* @desc Stops currently playing song and loads new audio file as CurrentBuzzObject
-		* @param {Object} song
-		*/
-=======
 	/**
 	* @desc Buzz object audio File* @type {Object}
 	*/
@@ -27,7 +13,6 @@
 	* @desc Stops currently playing song and loads new audio file as CurrentBuzzObject
 	* @param {Object} song
 	*/
->>>>>>> checkpoint-7-mergeable-assignment
 		var setSong = function(song) {
 			if (currentBuzzObject) {
 					currentBuzzObject.stop();
@@ -39,25 +24,7 @@
 			});
 			currentSong = song;
 		};
-<<<<<<< HEAD
-		
-		var 
-		
-		SongPlayer.play = function(song) {
-			if (currentSong !== song) {
-				
-				setSong(song);
-				currentBuzzObject.play();
-			
-			} else if (currentSong === song) {
-				if (currentBuzzObject.isPaused()) {
-					currentBuzzObject.play();
-					song.playing = true;
-				}
-			}
-		};
-		
-=======
+
 	/**
 	* @function playSong
 	* @desc Plays the current audio file and sets the song object to playing
@@ -82,12 +49,12 @@
 				}
 			}
 		};
-		/**
+	
+	/**
 	* @function SongPlayer.pause
 	* @desc Pauses the current song and sets the playing parameter of song to false.
 	* @param {Object} song
 	*/		
->>>>>>> checkpoint-7-mergeable-assignment
 		SongPlayer.pause = function(song) {
 			currentBuzzObject.pause();
 			song.playing = false;
