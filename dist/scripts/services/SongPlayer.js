@@ -1,7 +1,6 @@
 (function() {
 	function SongPlayer() {
 		var SongPlayer = {};
-		var currentSong = null;
 		
 	/**
 	* @desc Buzz object audio File* @type {Object}
@@ -16,14 +15,15 @@
 		var setSong = function(song) {
 			if (currentBuzzObject) {
 					currentBuzzObject.stop();
-					currentSong.playing = null;
+					SongPlayer.currentSong.playing = null;
 			} 
 			currentBuzzObject = new buzz.sound(song.audioUrl, {
 				formats: ['mp3'],
 				preload: true
 			});
-			currentSong = song;
+			SongPlayer.currentSong = song;
 		};
+		
 
 	/**
 	* @function playSong
@@ -33,19 +33,22 @@
 			currentBuzzObject.play();
 			song.playing = true;	
 		};
+		
 	
+		SongPlayer.currentSong = null;
 	/**
 	* @function SongPlayer.play
 	* @desc Checks if the current song is the song chosen. If its not, it sets and plays the new song (see setSong & playSong above). If the selected song is the current playing song, it checks if the audio file is paused and if it is, plays it (see playSong).
 	* @param {Object} song
 	*/	
 		SongPlayer.play = function(song) {
-			if (currentSong !== song) {
+			song = song || SongPlayer.currentSong;
+			if (SongPlayer.currentSong !== song) {
 				setSong(song);
 				playSong(song);
-			} else if (currentSong === song) {
+			} else if (SongPlayer.currentSong === song) {
 				if (currentBuzzObject.isPaused()) {
-					playSong();
+					playSong(song);
 				}
 			}
 		};
@@ -56,6 +59,7 @@
 	* @param {Object} song
 	*/		
 		SongPlayer.pause = function(song) {
+			song = song || SongPlayer.currentSong;
 			currentBuzzObject.pause();
 			song.playing = false;
 		};
