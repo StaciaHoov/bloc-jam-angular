@@ -26,6 +26,8 @@
 			currentSong = song;
 		};
 		
+		var 
+		
 		SongPlayer.play = function(song) {
 			if (currentSong !== song) {
 				
