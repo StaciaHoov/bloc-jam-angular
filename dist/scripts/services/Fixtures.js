@@ -40,7 +40,10 @@
 			for (var i = 0; i < numberOfAlbums; i++) {
 				albums.push(angular.copy(albumPicasso));
 			};
+<<<<<<< HEAD
 
+=======
+>>>>>>> checkpoint-7-mergeable-assignment
 			return albums;
 		};
 		
