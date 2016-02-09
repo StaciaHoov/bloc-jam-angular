@@ -1,5 +1,5 @@
 (function() {
-	function SongPlayer(Fixtures) {
+	function SongPlayer($rootScope, Fixtures) {
 		var SongPlayer = {};
 /**
 * @function currentAlbum
@@ -36,6 +36,13 @@
 				formats: ['mp3'],
 				preload: true
 			});
+/* Buzz's bind() method adds event listeners to a sound. Runs callback after timeupdate(Buzz html5 audio event) event.
+$rootScope.$apply allows the  update of the song's playback progress from anywhere.*/
+			currentBuzzObject.bind('timeupdate', function() { 
+				$rootScope.$apply(function() { 
+					SongPlayer.currentTime = currentBuzzObject.getTime();
+				});
+			});
 			SongPlayer.currentSong = song;
 		};
 		
@@ -59,13 +66,31 @@
 			song.playing = null;
 		};
 		
+/**
+* @function setCurrentTime
+* @desc Set current time (in seconds) of currently playing song. Checks for Buzz object and then uses Buzz's setTime method to * set playback position.
+* @param {Number} time
+*/
+		SongPlayer.setCurrentTime = function(time) {
+			if (currentBuzzObject) {
+				currentBuzzObject.setTime(time);
+			}
+		};
+		
 	
 		SongPlayer.currentSong = null;
+		
+/**
+* @desc Current playback time (in seconds) of currently playing song
+* @type {Number}
+*/
+		SongPlayer.currentTime = null;
+		
 /**
 * @function SongPlayer.play
 * @desc Checks if the current song is the song chosen. If its not, it sets and plays the new song (see setSong & playSong above). If the selected song is the current playing song, it checks if the audio file is paused and if it is, plays it (see playSong).
 * @param {Object} song
-	*/	
+*/	
 		SongPlayer.play = function(song) {
 			song = song || SongPlayer.currentSong;
 			if (SongPlayer.currentSong !== song) {
@@ -131,5 +156,6 @@
 
 	angular
 		.module('blocJams')
-		.factory('SongPlayer', SongPlayer);
+		.factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
+		
 })();
