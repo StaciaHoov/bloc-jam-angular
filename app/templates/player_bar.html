@@ -20,23 +20,21 @@
 		</div>
 
 		<div class="control-group currently-playing">
-			<h2 class="song-name"></h2>
-			<h2 class="artist-song-mobile"></h2>
-			<h3 class="artist-name"></h3>
+			<h2 class="song-name">{{ playerBar.songPlayer.currentSong.name }}</h2>
+			<h2 class="artist-song-mobile">{{ playerBar.songPlayer.currentSong.name }}</h2>
+			<h3 class="artist-name">{{ playerBar.albumData.artist}}</h3>
 			<div class="seek-control">
 				<seek-bar value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.length }}"
 						  on-change="playerBar.songPlayer.setCurrentTime(value)"></seek-bar>
-				<div class="current-time"></div>
+				<div class="current-time">{{ playerBar.songPlayer.currentTime }}</div>
 				<div class="total-time"></div>
 			</div>
 		</div>
 
 		<div class="control-group volume">
 			<span class="ion-volume-high icon"></span>
-			<div class="seek-bar">
-				<div class="fill"></div>
-				<div class="thumb"></div>
-			</div>
+			<seek-bar value="{{ playerBar.songPlayer.currentVolume }}" max= "100"
+					  on-change="playerBar.songPlayer.setVolume(volume)"></seek-bar>
 		</div>
 	</div>
 </section>

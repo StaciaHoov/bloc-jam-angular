@@ -70,21 +70,27 @@ $rootScope.$apply allows the  update of the song's playback progress from anywhe
 * @function setCurrentTime
 * @desc Set current time (in seconds) of currently playing song. Checks for Buzz object and then uses Buzz's setTime method to * set playback position.
 * @param {Number} time
-*/
+*/		
 		SongPlayer.setCurrentTime = function(time) {
 			if (currentBuzzObject) {
 				currentBuzzObject.setTime(time);
 			}
+		};		
+		
+		SongPlayer.setVolume = function(volume) {
+			if (currentBuzzObject) {
+				currentBuzzObject.setVolume(volume);
+			}
 		};
-		
-	
-		SongPlayer.currentSong = null;
-		
 /**
 * @desc Current playback time (in seconds) of currently playing song
 * @type {Number}
 */
 		SongPlayer.currentTime = null;
+		
+		SongPlayer.currentVolume = 0;
+		
+		SongPlayer.currentSong = null;
 		
 /**
 * @function SongPlayer.play

@@ -21,15 +21,13 @@
 				onChange: '&' 
 			},
 			link: function(scope, element, attributes) {
-				scope.value = 0;
+				scope.value = 0; /*these are attributes */
 				scope.max = 100;
-
 /*
 * @desc Holds the element that matches the directive (<seek-bar>) as a 
 * jQuery object so we can call jQuery methods on it.
 */
 				var seekBar = $(element);
-
 /*
 * $observe method on attributes object notifies the directive of all changes to attribute values. 
 * newValue is the new scope value 
@@ -56,7 +54,6 @@
 				scope.thumbStyle = function() {
 					return {left: percentString()}
 				};
-
 /*
 * @desc Updates the seek bar value based on the seek bar's width and the 
 * location of the user's click on the seek bar.
@@ -66,7 +63,6 @@
 					scope.value = percent * scope.max;
 					notifyOnChange(scope.value);
 				};
-
 /* 
 * uses $apply to constantly apply the change in value of scope.value as the user drags the seek bar thumb.
 */
