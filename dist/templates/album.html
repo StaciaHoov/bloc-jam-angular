@@ -20,7 +20,7 @@
 					<span class="ion-pause"></span></a>
 			</td>
 			<td class="song-item-title">{{ song.name }}</td>
-			<td class="song-item-duration">{{ song.duration }}</td>
+			<td class="song-item-duration">{{ song.length | timecode}}</td>
 		</tr>
 	</table>	
 </main>
