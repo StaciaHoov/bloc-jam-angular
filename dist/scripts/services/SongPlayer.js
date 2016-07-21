@@ -43,6 +43,12 @@ $rootScope.$apply allows the  update of the song's playback progress from anywhe
 					SongPlayer.currentTime = currentBuzzObject.getTime();
 				});
 			});
+			
+			currentBuzzObject.bind('volumechange', function() {
+				$rootScope.$apply(function() {
+					SongPlayer.volume = currentBuzzObject.getVolume();
+				});
+			});
 			SongPlayer.currentSong = song;
 		};
 		
@@ -88,7 +94,7 @@ $rootScope.$apply allows the  update of the song's playback progress from anywhe
 */
 		SongPlayer.currentTime = null;
 		
-		SongPlayer.currentVolume = 0;
+		SongPlayer.volume = null;
 		
 		SongPlayer.currentSong = null;
 		

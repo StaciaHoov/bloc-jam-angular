@@ -12,7 +12,8 @@
 			offsetXPercent = Math.min(1, offsetXPercent);
 			return offsetXPercent;
 		};
-
+/* callback returns an object that describes the directives behavior to HTML compiler. Communicates behavior through options.
+*/
 		return {
 			templateUrl: '/templates/directives/seek_bar.html',
 			replace: true,
@@ -39,6 +40,7 @@
 				attributes.$observe('max', function(newValue) {
 					scope.max = newValue;
 				});
+			
 
 				var percentString = function() {
 					var value = scope.value;
@@ -83,6 +85,7 @@
 				
 				var notifyOnChange = function(newValue) {
 					if (typeof scope.onChange === 'function') {
+						console.log(newValue);
 						scope.onChange({value: newValue});
 					}
 					
