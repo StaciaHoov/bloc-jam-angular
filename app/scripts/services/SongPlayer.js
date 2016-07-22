@@ -43,6 +43,12 @@ $rootScope.$apply allows the  update of the song's playback progress from anywhe
 					SongPlayer.currentTime = currentBuzzObject.getTime();
 				});
 			});
+			
+			currentBuzzObject.bind('volumechange', function() {
+				$rootScope.$apply(function() {
+					SongPlayer.volume = currentBuzzObject.getVolume();
+				});
+			});
 			SongPlayer.currentSong = song;
 		};
 		
@@ -70,21 +76,27 @@ $rootScope.$apply allows the  update of the song's playback progress from anywhe
 * @function setCurrentTime
 * @desc Set current time (in seconds) of currently playing song. Checks for Buzz object and then uses Buzz's setTime method to * set playback position.
 * @param {Number} time
-*/
+*/		
 		SongPlayer.setCurrentTime = function(time) {
 			if (currentBuzzObject) {
 				currentBuzzObject.setTime(time);
 			}
+		};		
+		
+		SongPlayer.setVolume = function(volume) {
+			if (currentBuzzObject) {
+				currentBuzzObject.setVolume(volume);
+			}
 		};
-		
-	
-		SongPlayer.currentSong = null;
-		
 /**
 * @desc Current playback time (in seconds) of currently playing song
 * @type {Number}
 */
 		SongPlayer.currentTime = null;
+		
+		SongPlayer.volume = null;
+		
+		SongPlayer.currentSong = null;
 		
 /**
 * @function SongPlayer.play
